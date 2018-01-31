@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sample FirebaseUI App</title>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDsO9Fwti9q0xbnuAgUxhGvRM07xTQ8uJU",
+            authDomain: "firestore-5a572.firebaseapp.com",
+            databaseURL: "https://firestore-5a572.firebaseio.com",
+            projectId: "firestore-5a572",
+            storageBucket: "firestore-5a572.appspot.com",
+            messagingSenderId: "361944722832"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        initApp = function () {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    // User is signed in.
+                    console.log(user.displayName+' logged in');
+                    var displayName = user.displayName;
+                    var email = user.email;
+                    var emailVerified = user.emailVerified;
+                    var photoURL = user.photoURL;
+                    var uid = user.uid;
+                    var phoneNumber = user.phoneNumber;
+                    var providerData = user.providerData;
+                    document.getElementById('status').innerHTML=user.displayName;
+                    document.getElementById('email').innerHTML=user.email;
+                    
+                } else {
+                    // User is signed out.
+                    console.log('no user logged in');
+                   
+                }
+            }, function (error) {
+                console.log(error);
+            });
+        };
+
+        window.addEventListener('load', function () {
+            initApp()
+        });
+    </script>
+
+
+</body>
+<h1>Thank you very much for Signing in to my website</h1>
+<label id="status"></label><br>
+<label id="email"></label><br>
+<button>ok</button>
+
+
+
+
+</html>
